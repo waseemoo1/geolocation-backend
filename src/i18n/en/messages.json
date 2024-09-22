@@ -1,0 +1,9 @@
+{
+  "HELLO": "Hello world",
+
+  "CREATED": "create successfully",
+  "UPDATED": "update successfully",
+  "DELETED": "delete successfully",
+  "GET": "get successfully",
+  "OK": "OK"
+}
