@@ -6,9 +6,15 @@ import compression from 'compression';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { setupSwagger } from './common/swagger';
 import { I18nValidationExceptionFilter, I18nValidationPipe } from 'nestjs-i18n';
+import fs from 'fs';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    httpsOptions: {
+      key: fs.readFileSync('./secrets/cert.key'),
+      cert: fs.readFileSync('./secrets/cert.crt'),
+    },
+  });
 
   const configService = app.get<ConfigService>(ConfigService);
 

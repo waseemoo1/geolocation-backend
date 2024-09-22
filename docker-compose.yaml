@@ -17,7 +17,7 @@ services:
 
       # SERVER INFO
       APP_PORT: 3000
-      SWAGGER_SERVER: http://localhost:3000
+      SWAGGER_SERVER: https://localhost:3000/
       NODE_ENV: development
 
       # Email service
