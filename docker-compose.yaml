@@ -35,12 +35,6 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
 
-  phpmyadmin:
-    depends_on:
-      - mysql
-    image: phpmyadmin
-    ports:
-      - '9000:80'
 
 volumes:
   dbdata:
