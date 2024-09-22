@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  backend:
+    depends_on:
+      - mysql
+    build: .
+    ports:
+      - 3000:3000
+    environment:
+      # DATABASE
+      DB_PORT: 3306
+      DB_HOST: mysql
+      DB_USERNAME: root
+      DB_PASSWORD: waseem123
+      DB_NAME: test
+
+      # SERVER INFO
+      APP_PORT: 3000
+      SWAGGER_SERVER: http://localhost:3000
+      NODE_ENV: development
+
+      # Email service
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PASS: ${EMAIL_PASS}
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: waseem123
+      MYSQL_DATABASE: test
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin
+    ports:
+      - '9000:80'
+
+volumes:
+  dbdata:
