@@ -2,7 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import helmet from 'helmet';
-import { ValidationPipe } from '@nestjs/common';
 import compression from 'compression';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { setupSwagger } from './common/swagger';
@@ -33,7 +32,6 @@ async function bootstrap() {
     }),
   );
 
-  // Register exception filters in order
   app.useGlobalFilters(new HttpExceptionFilter());
   app.useGlobalFilters(
     new I18nValidationExceptionFilter({ detailedErrors: false }),
